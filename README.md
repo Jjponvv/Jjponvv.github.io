@@ -1,3 +1,3 @@
 # NotiRocket
 
-![Logo]('https://github.com/Jjponvv/NotiRocket/blob/main/images/NotiRocketLogo.png')
+![Logo]('images/NotiRocketLogo.png')
