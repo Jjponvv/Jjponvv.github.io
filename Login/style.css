@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../images/LoginBg.jpg');
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.main{
+    width: 420px;
+    background-color: rgb(110, 161, 255);
+    border: 2px solid #f3f3f3;
+    background: transparent;
+    border-radius: 20px;
+    color: #fff;
+    padding: 30px 40px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.main h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.input-box{
+    width: 100%;
+    height: 50px;
+    margin: 25px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    border: 2px solid #f3f3f3;
+    background: #fff;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.1s;
+    padding: 25px 45px 25px 25px;
+}
+
+.input-box input::placeholder{
+    color: #888888;
+}
+
+.input-box input::placeholder:active{
+    color: #000;
+}
+
+.input-box input:focus{
+    background: #f3f3f3;
+    border: 2px solid #e1e1e1;
+}
+
+.btn{
+    width: 100%;
+    height: 55px;
+    border: 2px solid #f3f3f3;
+    background: #fff;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #888888;
+    font-size: 14px;
+    transition: 0.1s;
+}
+
+.btn:active{
+    background: #f3f3f3;
+    border: 2px solid #e1e1e1;
+}
