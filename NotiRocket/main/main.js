@@ -49,13 +49,29 @@ async function fetchData(){
 
     allResults.forEach(item => {
 
+        let date = new Date(item['window_start']);
+        let image = '';
+        let video_link = '';
+
+        if(item['status']['name'] == 'Success'){
+            image = '../images/Terminated.png';
+        } else {
+            image = '../images/Launch.png';
+        }
+
+        if(item['links'] != null){
+            video_link = item['links']['video_link']
+        } else {
+            video_link = '#';
+        }
+
         htmlContent += `<section class="content">
             <div class="sort">
                 <p id="name">${item['name']}</p>
                 <p id="name">:</p>
-                <p id="time">${item['last_updated']}</p>
-                <button>Track</button>
-                <img src="../images/Launch.png" alt="status">
+                <p id="time">${date.toLocaleString()}</p>
+                <button onclick="location.href='${video_link}'">Track</button>
+                <img src="${image}" alt="status">
             </div>
         </section>`
         

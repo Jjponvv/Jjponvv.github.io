@@ -89,7 +89,8 @@ body{
     background-color: rgba(0, 0, 0, 0.09);
     border-radius: 10px;
     display:flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .content button{
@@ -113,14 +114,14 @@ body{
     color: #fff;
     font-size: 24px;
     margin: 10px;
-    width: 200px;
+    width: 150px;
 }
 
 .content #time{
     color: #fff;
     font-size: 24px;
     margin: 10px;
-    width: 150px;
+    width: 120px;
 
 }
 
@@ -128,7 +129,6 @@ body{
     color: #fff;
     font-size: 24px;
     margin: 10px;
-    width: 20px;
 }
 
 .sort{
