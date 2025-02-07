@@ -1,6 +1,5 @@
 import datetime, requests
 
-base_url =' https://lldev.thespacedevs.com/2.2.0/launch/'
 
 now = datetime.datetime.now()
 month = now - datetime.timedelta(days=31)
