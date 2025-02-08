@@ -1,4 +1,4 @@
-const base_url =' https://lldev.thespacedevs.com/2.2.0/launch/'
+const base_url =' https://lldev.thespacedevs.com/2.3.0/launches/'
 
 let now = new Date();
 let month = new Date();
@@ -7,7 +7,7 @@ month.setMonth(now.getMonth()-1);
 
 let time = `net__gte=${month.toISOString()}&net__lte=${now.toISOString()}`
 
-const mode = 'mode=list';
+const mode = 'mode=detailed';
 const format = 'format=json';
 const ordering = 'ordering=net';
 
@@ -51,7 +51,7 @@ async function fetchData(){
 
         let date = new Date(item['window_start']);
         let image = '';
-        let video_link = '';
+        let video_link = '#';
 
         if(item['status']['name'] == 'Success'){
             image = '../images/Terminated.png';
@@ -59,10 +59,10 @@ async function fetchData(){
             image = '../images/Launch.png';
         }
 
-        if(item['links'] != null){
-            video_link = item['links']['video_link']
+        if(item['vid_urls'][0]!= undefined){
+             video_link = item['vid_urls'][0]['url']
         } else {
-            video_link = '#';
+             video_link = '#';
         }
 
         htmlContent += `<section class="content">
