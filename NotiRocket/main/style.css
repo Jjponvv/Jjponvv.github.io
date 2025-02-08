@@ -86,7 +86,7 @@ body{
 .content{
     height: 25vh;
     margin: 20px 20px 20px 20px;
-    background-color: rgba(0, 0, 0, 0.09);
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     display:flex;
     justify-content: center;
