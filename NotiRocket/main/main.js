@@ -3,15 +3,17 @@ const base_url =' https://lldev.thespacedevs.com/2.3.0/launches/'
 let now = new Date();
 let month = new Date();
 month.setMonth(now.getMonth()-1);
+const resetTime = (date) => new Date(date.setHours(0, 0, 0, 0));
 
 
 let time = `net__gte=${month.toISOString()}&net__lte=${now.toISOString()}`
 
-const mode = 'mode=detailed';
+const mode = 'mode=list';
 const format = 'format=json';
-const ordering = 'ordering=net';
+const ordering = 'ordering=last_updated';
+const limit = 'limit=2'
 
-let query_url = base_url + '?' + '&'+time + '&' + mode + '&' + ordering + '&' + format;
+let query_url = base_url + '?' + '&'+time + '&' + mode + '&' + ordering + '&' + format + '&' + limit;
 
 console.log(query_url);
 
@@ -59,26 +61,38 @@ async function fetchData(){
             image = '../images/Launch.png';
         }
 
-        if(item['vid_urls'][0]!= undefined){
-             video_link = item['vid_urls'][0]['url']
-        } else {
-             video_link = '#';
-        }
 
         htmlContent += `<section class="content">
             <div class="sort">
                 <p id="name">${item['name']}</p>
                 <p id="name">:</p>
                 <p id="time">${date.toLocaleString()}</p>
-                <button onclick="location.href='${video_link}'">Track</button>
-                <img src="${image}" alt="status">
+                <button onclick="(function() { collect('${now.setHours(now.getHours()-3)}', '${item['name']}'); })()">Collect</button>
+                <img src="${image}" alt="${item['status']['name']}">
             </div>
-        </section>`
-        
+        </section>`;
     });
 
-    document.getElementById('main').innerHTML = htmlContent
+    document.getElementById('main').innerHTML = htmlContent;
 
+}
+
+function collect(time, thing)
+{
+    const now = new Date();
+    const time_ = new Date(time);
+
+    if(now.getDate() == time_.getDate())
+    {
+        if(now.getHours() >=time_.getHours() - 3 && now.getHours() <= time_.getHours() + 3)
+        {
+            console.log(`Collected ${thing}`);
+        } else {
+            
+        }
+    } else{
+        console.log('The event has ended or has not yet started', thing);
+    }
 }
 
 fetchData()
