@@ -53,7 +53,8 @@ async function fetchData(){
 
         let date = new Date(item['window_start']);
         let image = '';
-        let video_link = '#';
+        let moment_ago = new Date(now);
+        moment_ago = moment_ago.setHours(moment_ago.getHours()-2);
 
         if(item['status']['name'] == 'Success'){
             image = '../images/Terminated.png';
@@ -67,7 +68,7 @@ async function fetchData(){
                 <p id="name">${item['name']}</p>
                 <p id="name">:</p>
                 <p id="time">${date.toLocaleString()}</p>
-                <button onclick="(function() { collect('${now.setHours(now.getHours()-3)}', '${item['name']}'); })()">Collect</button>
+                <button onclick="(function() { collect('${now}', '${item['name']}'); })()">Collect</button>
                 <img src="${image}" alt="${item['status']['name']}">
             </div>
         </section>`;
@@ -84,15 +85,22 @@ function collect(time, thing)
 
     if(now.getDate() == time_.getDate())
     {
-        if(now.getHours() >=time_.getHours() - 3 && now.getHours() <= time_.getHours() + 3)
+        if(now.getHours() >= (time_.getHours() - 3) && now.getHours() <= (time_.getHours() + 3))
         {
             console.log(`Collected ${thing}`);
+            if(localStorage.getItem("achivements") != null)
+            {
+                localStorage.setItem("achivements", localStorage.getItem("achivements")+JSON.stringify({"name":thing, "time":time}))
+            } else {
+                localStorage.setItem("achivements", JSON.stringify({"name":thing, "time":time}))
+            }
+            console.log(localStorage.achivements);
         } else {
-            
+            console.log('its today but the event has ended or has not yet started', thing)
         }
     } else{
         console.log('The event has ended or has not yet started', thing);
     }
 }
 
-fetchData()
+fetchData();
